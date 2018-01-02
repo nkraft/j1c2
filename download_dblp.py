@@ -25,10 +25,11 @@ def main(args):
     session = requests.Session()
     session.proxies = { 'http' : 'http://proxy.us.abb.com:8080' }
 
-    software_page_urls = page_url_gen('http://dblp.uni-trier.de/db/journals/software/', 'software', 2007, 2016, lambda x: x - 1983)
-    fse_page_urls = page_url_gen('http://dblp.uni-trier.de/db/conf/sigsoft', 'fse', 2007, 2016)
+    software_page_urls = page_url_gen('http://dblp.uni-trier.de/db/journals/software/', 'software', 2008, 2017, lambda x: x - 1983)
+    fse_page_urls = page_url_gen('http://dblp.uni-trier.de/db/conf/sigsoft', 'fse', 2008, 2017)
+    icse_page_urls = page_url_gen('http://dblp.uni-trier.de/db/conf/icse', 'icse', 2008, 2017)
 
-    for page_url in chain(software_page_urls, fse_page_urls):
+    for page_url in chain(software_page_urls, fse_page_urls, icse_page_urls):
         download_page(page_url, session, output_dir)
 
 
